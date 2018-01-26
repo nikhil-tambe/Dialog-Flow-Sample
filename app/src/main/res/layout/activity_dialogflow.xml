@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/appbar"/>
+
     <LinearLayout
         android:id="@+id/queryInput_LL"
         android:layout_width="match_parent"
@@ -18,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@null"
-            android:src="@drawable/ic_action_mic"
+            android:src="@drawable/ic_mic"
             android:padding="10dp"/>
 
         <EditText
@@ -29,7 +31,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:maxLines="3"
-            android:hint="Query"/>
+            android:hint="Enter a Query"/>
 
         <ImageButton
             android:id="@+id/sendMessage_Button"
@@ -37,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@null"
-            android:src="@drawable/ic_action_send"
+            android:src="@drawable/ic_send"
             android:padding="10dp"/>
 
     </LinearLayout>

@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Dialog Flow Demo</string>
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Dialog Flow Tester!</string>
+    <string name="slide_1_desc">An app to test your own Dialog Flow Agents!</string>
+
+    <string name="slide_2_title">Permission</string>
+    <string name="slide_2_desc">Enable Record-Audio permission to make queries using your own voice!</string>
+
+    <string name="slide_3_title">Access Token</string>
+    <string name="slide_3_desc">Use default token or change to your own access token in Settings!</string>
+
+    <string name="slide_4_title">Done</string>
+    <string name="slide_4_desc">Now test the Agent!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+
 </resources>

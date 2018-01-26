@@ -1,4 +1,4 @@
-package com.nikhil.dialogflowdemo;
+package com.nikhil.dialogflowdemo.chat;
 
 import android.Manifest;
 import android.content.Context;
@@ -22,6 +22,10 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.nikhil.dialogflowdemo.R;
+import com.nikhil.dialogflowdemo.settings.AgentsActivity;
+import com.nikhil.dialogflowdemo.utils.PrefManager;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -36,20 +40,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.nikhil.dialogflowdemo.Constants.API_KEY;
-import static com.nikhil.dialogflowdemo.Constants.APPLICATION_JSON;
-import static com.nikhil.dialogflowdemo.Constants.AUTHORIZATION;
-import static com.nikhil.dialogflowdemo.Constants.BASE_URL;
-import static com.nikhil.dialogflowdemo.Constants.BEARER;
-import static com.nikhil.dialogflowdemo.Constants.CONTENT_TYPE;
-import static com.nikhil.dialogflowdemo.Constants.J_KEY_LANG;
-import static com.nikhil.dialogflowdemo.Constants.J_KEY_QUERY;
-import static com.nikhil.dialogflowdemo.Constants.J_KEY_RESULT;
-import static com.nikhil.dialogflowdemo.Constants.J_KEY_SESSION_ID;
-import static com.nikhil.dialogflowdemo.Constants.J_KEY_SPEECH;
-import static com.nikhil.dialogflowdemo.Constants.K_KEY_FULFILLMENT;
-import static com.nikhil.dialogflowdemo.Constants.VALUE_LANG_EN;
-import static com.nikhil.dialogflowdemo.Constants.VALUE_SESSION_ID;
+import static com.nikhil.dialogflowdemo.utils.Constants.APPLICATION_JSON;
+import static com.nikhil.dialogflowdemo.utils.Constants.AUTHORIZATION;
+import static com.nikhil.dialogflowdemo.utils.Constants.BASE_URL;
+import static com.nikhil.dialogflowdemo.utils.Constants.BEARER;
+import static com.nikhil.dialogflowdemo.utils.Constants.CONTENT_TYPE;
+import static com.nikhil.dialogflowdemo.utils.Constants.J_KEY_LANG;
+import static com.nikhil.dialogflowdemo.utils.Constants.J_KEY_QUERY;
+import static com.nikhil.dialogflowdemo.utils.Constants.J_KEY_RESULT;
+import static com.nikhil.dialogflowdemo.utils.Constants.J_KEY_SESSION_ID;
+import static com.nikhil.dialogflowdemo.utils.Constants.J_KEY_SPEECH;
+import static com.nikhil.dialogflowdemo.utils.Constants.K_KEY_FULFILLMENT;
+import static com.nikhil.dialogflowdemo.utils.Constants.VALUE_LANG_EN;
+import static com.nikhil.dialogflowdemo.utils.Constants.VALUE_SESSION_ID;
+
+//import static com.nikhil.dialogflowdemo.utils.Constants.API_KEY;
 
 /**
  * Created by nikhil on 7/1/18.
@@ -70,9 +75,13 @@ public class DialogFlowActivity extends AppCompatActivity {
     LinearLayout messages_LinerLayout;
     @BindView(R.id.queryInput_EditText)
     EditText queryInput_EditText;
+    @BindView(R.id.agentName_TextView)
+    TextView agentName_TextView;
     //
     Context context;
+    String accessToken, agentName;
     int userColor, aiColor, whiteColor;
+    PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +90,15 @@ public class DialogFlowActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         context = DialogFlowActivity.this;
 
+        prefManager = new PrefManager(this);
+        accessToken = prefManager.getAccessToken().trim();
+        agentName = prefManager.getAgentName().trim();
+        if (accessToken.equals("")) {
+            startActivity(new Intent(this, AgentsActivity.class));
+            finish();
+        }
+
+        agentName_TextView.setText(agentName);
         userColor = ContextCompat.getColor(context, R.color.colorUserRequest);
         aiColor = ContextCompat.getColor(context, R.color.colorAIResponse);
         whiteColor = ContextCompat.getColor(context, R.color.colorWhite);
@@ -167,13 +185,14 @@ public class DialogFlowActivity extends AppCompatActivity {
         return false;
     }
 
+    // Populate Dialog View
     private void addMessage(boolean onLeft, String s) {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         TextView tv = new TextView(context);
         tv.setTextSize(18);
-        tv.setPadding(15,18,15,18);
+        tv.setPadding(15, 18, 15, 18);
         tv.setText(s);
         lp.bottomMargin = lp.topMargin = 10;
         //lp.weight = 1.0f;
@@ -213,7 +232,7 @@ public class DialogFlowActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            addMessage(true, "Response: \n" + s);
+            addMessage(true, agentName + ": \n" + s);
         }
 
         private String getResponse(String query) {
@@ -229,7 +248,7 @@ public class DialogFlowActivity extends AppCompatActivity {
                 conn.setDoInput(true);
 
                 // Set request properties
-                conn.setRequestProperty(AUTHORIZATION, BEARER + " " + API_KEY);
+                conn.setRequestProperty(AUTHORIZATION, BEARER + " " + accessToken); // API_KEY);
                 conn.setRequestProperty(CONTENT_TYPE, APPLICATION_JSON);
 
                 //Create request JSONObject

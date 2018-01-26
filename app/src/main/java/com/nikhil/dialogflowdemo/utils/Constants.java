@@ -1,4 +1,4 @@
-package com.nikhil.dialogflowdemo;
+package com.nikhil.dialogflowdemo.utils;
 
 /**
  * Created by nikhil on 7/1/18.
@@ -7,7 +7,7 @@ package com.nikhil.dialogflowdemo;
 public interface Constants {
 
     // Put Your DialogFlow
-    String API_KEY = "";
+    // String API_KEY = "";
 
     // URL Params
     String BASE_URL = "https://api.api.ai/v1/query?v=20150910";
