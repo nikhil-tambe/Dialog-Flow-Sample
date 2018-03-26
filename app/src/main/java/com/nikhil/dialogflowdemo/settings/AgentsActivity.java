@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.nikhil.dialogflowdemo.R;
+import com.nikhil.dialogflowdemo.app.BaseActivity;
 import com.nikhil.dialogflowdemo.chat.DialogFlowActivity;
 import com.nikhil.dialogflowdemo.utils.PrefManager;
 
@@ -22,7 +23,7 @@ import butterknife.OnClick;
  * Created by nikhil on 26/1/18.
  */
 
-public class AgentsActivity extends AppCompatActivity {
+public class AgentsActivity extends BaseActivity {
 
 
     @BindView(R.id.agentsActivity_MainLayout)

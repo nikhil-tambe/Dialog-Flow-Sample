@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.nikhil.dialogflowdemo.app.BaseActivity;
+
 /**
  * Created by nikhil on 26/1/18.
  */
 
-public class AgentDetailsActivity extends AppCompatActivity {
+public class AgentDetailsActivity extends BaseActivity {
 
 
     @Override

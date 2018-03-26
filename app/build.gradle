@@ -36,4 +36,18 @@ dependencies {
     compile 'ai.api:sdk:2.0.7@aar'
     compile 'ai.api:libai:1.6.12'
 
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+
+    // LifeCycle
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+
+    // RxJava and RxAndroid
+    compile "io.reactivex.rxjava2:rxjava:2.1.7"
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+
 }

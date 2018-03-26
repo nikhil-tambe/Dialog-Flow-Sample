@@ -3,12 +3,10 @@ package com.nikhil.dialogflowdemo.intro;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nikhil.dialogflowdemo.R;
+import com.nikhil.dialogflowdemo.app.BaseActivity;
 import com.nikhil.dialogflowdemo.settings.AgentsActivity;
 import com.nikhil.dialogflowdemo.utils.PrefManager;
 
@@ -27,7 +26,7 @@ import com.nikhil.dialogflowdemo.utils.PrefManager;
  * Created by nikhil on 7/1/18.
  */
 
-public class IntroActivity extends AppCompatActivity {
+public class IntroActivity extends BaseActivity {
 
     private ViewPager viewPager;
     //private MyViewPagerAdapter myViewPagerAdapter;
@@ -166,9 +165,9 @@ public class IntroActivity extends AppCompatActivity {
      */
     private void changeStatusBarColor() {
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.TRANSPARENT);
         //}
     }
 

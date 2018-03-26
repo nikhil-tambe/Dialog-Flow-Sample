@@ -7,12 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.nikhil.dialogflowdemo.R;
+import com.nikhil.dialogflowdemo.app.BaseActivity;
 
 /**
  * Created by nikhil on 7/1/18.
  */
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

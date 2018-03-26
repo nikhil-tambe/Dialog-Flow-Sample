@@ -23,6 +23,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.nikhil.dialogflowdemo.R;
+import com.nikhil.dialogflowdemo.app.BaseActivity;
 import com.nikhil.dialogflowdemo.settings.AgentsActivity;
 import com.nikhil.dialogflowdemo.utils.PrefManager;
 
@@ -60,7 +61,7 @@ import static com.nikhil.dialogflowdemo.utils.Constants.VALUE_SESSION_ID;
  * Created by nikhil on 7/1/18.
  */
 
-public class DialogFlowActivity extends AppCompatActivity {
+public class DialogFlowActivity extends BaseActivity {
 
     public static final int AUDIO_PERMISSION = 123;
     private static final String TAG = "nikhil DialogFlow";
